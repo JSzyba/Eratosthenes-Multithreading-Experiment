@@ -1,11 +1,16 @@
 #include <stdbool.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <omp.h>
 // todo: guess the size
 #define X 64
 
 int main(int argc, char **argv)
 {
-    int n = argv[1];
-    int m = argv[2];
+    int n = atoi(argv[1]);
+    int m = atoi(argv[2]);
     bool *result = (bool *)malloc((n - m + 1) * sizeof(bool));
     memset(result, true, (n - m + 1) * sizeof(bool));
     bool *primeArray = (bool *)malloc((sqrt(n) + 1) * sizeof(bool));
@@ -16,7 +21,6 @@ int main(int argc, char **argv)
     {
         numberOfBlocks++;
     }
-#pragma omp parallel for // ?
     for (int i = 0; i < numberOfBlocks; i++)
     {
         int low = m + i * blockSize;

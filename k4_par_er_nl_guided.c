@@ -1,9 +1,14 @@
 #include <stdbool.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <omp.h>
 
 int main(int argc, char **argv)
 {
-    int n = argv[1];
-    int m = argv[2];
+    int n = atoi(argv[1]);
+    int m = atoi(argv[2]);
     bool *result = (bool *)malloc((n - m + 1) * sizeof(bool));
     memset(result, true, (n - m + 1) * sizeof(bool));
     bool *primeArray = (bool *)malloc((sqrt(n) + 1) * sizeof(bool));
@@ -18,8 +23,9 @@ int main(int argc, char **argv)
             }
         }
     }
-#pragma omp parallel for // ? Jaki podział pracy ?
-    for (int i = 2; i * i <= n; i++)
+    int k = sqrt(n);
+#pragma omp parallel for schedule(guided)
+    for (int i = 2; i <= k; i++)
     {
         if (primeArray[i])
         {
