@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <omp.h>
 // todo: guess the size
-#define X 64
+#define X 32*1024
 
 int main(int argc, char **argv)
 {
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     {
         numberOfBlocks++;
     }
-#pragma omp parallel for schedule(static, 1024*8)
+#pragma omp parallel for schedule(static)
     for (int i = 0; i < numberOfBlocks; i++)
     {
         int low = m + i * blockSize;

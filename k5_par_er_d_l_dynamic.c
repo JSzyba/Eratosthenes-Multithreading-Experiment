@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     {
         numberOfBlocks++;
     }
-#pragma omp parallel for schedule(dynamic, 1024*8)
+#pragma omp parallel for schedule(dynamic)
     for (int i = 0; i < numberOfBlocks; i++)
     {
         int low = m + i * blockSize;

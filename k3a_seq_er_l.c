@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <omp.h>
 // todo: guess the size
-#define X 64
+#define X 32*1024
 
 int main(int argc, char **argv)
 {
@@ -53,4 +53,5 @@ int main(int argc, char **argv)
             }
         }
     }
+    printf("koniec\n");
 }

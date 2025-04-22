@@ -24,7 +24,7 @@ int main(int argc, char **argv)
         }
     }
     int k = sqrt(n);
-#pragma omp parallel for schedule(dynamic, 1024*8)
+#pragma omp parallel for schedule(dynamic)
     for (int i = 2; i <= k; i++)
     {
         if (primeArray[i])
